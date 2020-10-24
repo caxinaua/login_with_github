@@ -4,7 +4,7 @@ PATH
     login_with_github (0.1.0)
       cgi (~> 0.1.0)
       json (~> 2)
-      rake (~> 12.0)
+      rake (~> 13.0)
       yaml (~> 0.1.0)
 
 GEM
@@ -13,7 +13,7 @@ GEM
     cgi (0.1.0)
     diff-lcs (1.4.4)
     json (2.3.1)
-    rake (12.3.0)
+    rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
