@@ -1,8 +1,5 @@
-# LoginWithGithub
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/login_with_github`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# login\_with\_github
 
 ## Installation
 
@@ -19,22 +16,51 @@ And then execute:
 Or install it yourself as:
 
     $ gem install login_with_github
+    
+    
+Generate config file
+
+	$ bundle exec login_with_github:g
+
+## Creating your credentials
+
+Create your app and get your credentials
+
+[https://github.com/settings/applications/new](https://github.com/settings/applications/new)
+
+#### Add credentials and redirect_uri to env
+
+```
+export GH_CLIENT_ID='client_id'
+export GH_CLIENT_SECRET='client_secret'
+export GH_REDIRECT_URI='http://localhost:3000/callback'
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Url to login
 
-## Development
+```ruby
+LoginWithGithub::Api.url_in
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+#### Url to login with helper
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/login_with_github. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/login_with_github/blob/master/CODE_OF_CONDUCT.md).
+```ruby
+gh_url_in
+```
 
 
-## Code of Conduct
+#### Process callback
 
-Everyone interacting in the LoginWithGithub project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/login_with_github/blob/master/CODE_OF_CONDUCT.md).
+Get auth return `{"access_token"=>["?"], "scope"=>["user:email"], "token_type"=>["bearer"]}`
+
+```ruby
+@auth = LoginWithGithub::Api.auth code: params[:code]
+```
+
+Get user info return keys `login id node_id avatar_url gravatar_id url html_url followers_url following_url gists_url starred_url subscriptions_url organizations_url repos_url events_url received_events_url type site_admin name company blog location email hireable bio twitter_username public_repos public_gists followers following created_at updated_at`
+
+```ruby
+@info = LoginWithGithub::Api.info token: @auth['access_token'][0]
+```

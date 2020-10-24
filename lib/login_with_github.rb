@@ -1,6 +1,17 @@
-require "login_with_github/version"
+# frozen_string_literal: true
 
-module LoginWithGithub
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require 'cgi'
+require 'json'
+require 'yaml'
+
+require 'login_with_github/version'
+
+# login with github
+module LoginWithGithub; end
+
+require 'login_with_github/config'
+require 'login_with_github/api_base'
+require 'login_with_github/github_api'
+require 'helper/login_with_github_helper'
+
+ActionView::Base.send :include, LoginWithGithubHelper if defined?(ActionView)

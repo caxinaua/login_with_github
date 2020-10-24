@@ -1,0 +1,32 @@
+default: &default
+  app:
+    client_id: <%= ENV['GH_CLIENT_ID'] %>
+    client_secret: <%= ENV['GH_CLIENT_SECRET'] %>
+
+  auth:
+    grant_type: "authorization_code"
+    client_id: <%= ENV['GH_CLIENT_ID'] %>
+    client_secret: <%= ENV['GH_CLIENT_SECRET'] %>
+
+  refresh:
+    grant_type: "refresh_token"
+    client_id: <%= ENV['GH_CLIENT_ID'] %>
+    client_secret: <%= ENV['GH_CLIENT_SECRET'] %>
+
+default_url: &default_url
+  url:
+    callback: <%= ENV['GH_REDIRECT_URI'] %>
+    login: https://github.com/login/oauth/authorize
+    auth: https://github.com/login/oauth/access_token
+    info: https://api.github.com/user
+    params_login:
+      scope: user:email
+      client_id: <%= ENV['GH_CLIENT_ID'] %>
+
+production:
+  <<: *default
+  <<: *default_url
+
+development:
+  <<: *default
+  <<: *default_url
