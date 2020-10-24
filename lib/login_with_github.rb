@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require 'cgi'
 require 'login_with_github/version'
 
-module LoginWithGithub
-  class Error < StandardError; end
-  # Your code goes here...
-end
+module LoginWithGithub; end
+
+require 'login_with_github/api_base'
