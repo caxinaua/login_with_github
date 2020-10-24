@@ -12,3 +12,6 @@ module LoginWithGithub; end
 require 'login_with_github/config'
 require 'login_with_github/api_base'
 require 'login_with_github/github_api'
+require 'helper/login_with_github_helper'
+
+ActionView::Base.send :include, LoginWithGithubHelper if defined?(ActionView)
