@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'cgi'
+require 'json'
 require 'yaml'
 
 require 'login_with_github/version'
